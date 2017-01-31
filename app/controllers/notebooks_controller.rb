@@ -37,4 +37,8 @@ class NotebooksController < ApplicationController
       end
     end
   end
+
+  def show
+    @notebook_item = Notebook.find(params[:id])
+  end
 end
