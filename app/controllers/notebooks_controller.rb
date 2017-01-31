@@ -19,4 +19,22 @@ class NotebooksController < ApplicationController
       end
     end
   end
+
+  def edit
+    @notebook_item = Notebook.find(params[:id])
+  end
+
+  def update
+    @notebook_item = Notebook.find(params[:id])
+
+    respond_to do |format|
+      if @notebook_item.update(params.require(:notebook).permit(:title, :subtitle, :body))
+        format.html { redirect_to notebooks_path, notice: 'The record was successfully updated.' }
+
+      else
+        format.html { render :edit }
+
+      end
+    end
+  end
 end
