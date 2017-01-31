@@ -41,4 +41,15 @@ class NotebooksController < ApplicationController
   def show
     @notebook_item = Notebook.find(params[:id])
   end
+
+  def destroy
+    #Perform the lookup
+    @notebook_item = Notebook.find(params[:id])
+    # Destroy/delete the record
+    @notebook_item.destroy
+    # Redirect
+    respond_to do |format|
+      format.html { redirect_to blogs_url, notice: 'Record was removed.' }
+    end
+  end
 end
