@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
-  resources :ports
-  get 'pages/home'
+  resources :notebooks, except: [:show]
+  get 'notebook/:id', to: 'notebooks#show', as: 'notebook_show'
 
-  get 'pages/about'
-
-  get 'pages/contact'
-
-  resources :blogs
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get 'about-me', to: 'pages#about'
+  get 'contact', to: 'pages#contact'
+  resources :blogs do
+    member do
+      get :toggle_status
+    end
+  end
+  root to: 'pages#home'
 end
