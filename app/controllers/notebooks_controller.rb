@@ -3,6 +3,10 @@ class NotebooksController < ApplicationController
     @notebooks_items = Notebook.all
   end
 
+  def angular
+    @angular_notebooks_items = Notebook.angular
+  end
+
   def new
     @notebooks_items = Notebook.new
   end
